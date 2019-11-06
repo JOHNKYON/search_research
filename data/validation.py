@@ -23,6 +23,8 @@ def linear_scan(path, query, k):
         length = int(file.readline())
         data_size = int(file.readline())
         query_size = int(file.readline())
+        print("Querying...")
+        print("Query size:\t" + str(query_size))
         for i in range(data_size):
             string = file.readline().rstrip()
             dist = hamming_distance(query, string)
@@ -37,6 +39,7 @@ def linear_scan(path, query, k):
     for candidate in candidates:
         idx.append(candidate[1])
 
+    print("Done.")
     return idx
 
 
@@ -107,7 +110,7 @@ if __name__ == '__main__':
     time1 = time.perf_counter()
     for query in queries:
         linscan_results.append(linear_scan(path, query, k))
-    query_time = time.perf_counter()
+    query_time = time.perf_counter() - time1
     with open(path+"/linear_query_time.txt", 'w') as f:
         f.write(str(query_time))
 
@@ -116,5 +119,5 @@ if __name__ == '__main__':
 
     # TODO: Change this to mih
     # TODO: Check for validation
-    with h5py.File(path + '/mih_' + file_name + '.h5', 'r') as h5_file:
+    with h5py.File(path + '/linscan_' + file_name + '.h5', 'r') as h5_file:
         print(compare_results(h5_file['refs']['linscan0.res'], linscan_results))

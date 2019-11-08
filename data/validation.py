@@ -27,13 +27,13 @@ def linear_scan(path, query, k):
         print("Query size:\t" + str(query_size))
         for i in range(data_size):
             string = file.readline().rstrip()
-            dist = hamming_distance(query, string)
+            relatedness = get_relatedness(query, string)
             if len(candidates) < k:
-                heapq.heappush(candidates, [dist, i])
+                heapq.heappush(candidates, [relatedness, i])
 
-            elif len(candidates) >= k and dist > candidates[0][0]:
+            elif len(candidates) >= k and relatedness > candidates[0][0]:
                 heapq.heappop(candidates)
-                heapq.heappush(candidates, [dist, i])
+                heapq.heappush(candidates, [relatedness, i])
 
     idx = []
     for candidate in candidates:
@@ -43,10 +43,13 @@ def linear_scan(path, query, k):
     return idx
 
 
-def hamming_distance(a, b):
+def get_relatedness(a, b):
     """
-    >>> hamming_distance("0012", "0111")
-    -2
+    >>> get_relatedness("0012", "0111")
+    1
+
+    >>> get_relatedness("0022", "0022")
+    4
 
     :param a:
     :param b:
@@ -54,10 +57,15 @@ def hamming_distance(a, b):
     """
     assert len(a) == len(b)
 
-    count = 0
+    score = 0
     for i in range(len(a)):
-        count = count+1 if a[i] != b[i] else count
-    return -count
+        if a[i] == '1' or b[i] == '1':
+            score += 1
+        elif a[i] == b[i]:
+            continue
+        else:
+            score -= 1
+    return score
 
 
 def compare_results(res1, res2):

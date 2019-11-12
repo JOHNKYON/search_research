@@ -31,7 +31,8 @@ if __name__ == '__main__':
         if i < 10:
             with open(linear_path + str(size) + "_results.txt", 'r') as linear_file:
                 dic[size].append(float(linear_file.readline()))
-
+        else:
+            dic[size].append(None)
     df = pd.DataFrame(dic)
     print(df.shape)
 

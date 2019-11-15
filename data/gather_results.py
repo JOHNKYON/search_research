@@ -18,6 +18,7 @@ if __name__ == '__main__':
     linear_path = "scrpts/data/data/128_1000000_100/"
 
     if len(args) == 1:
+        # Args should be like p0.05
         mih_path = mih_path[:-1] + "_" + args[0] + "/"
         linear_path = linear_path[:-1] + "_" + args[0] + "/"
 

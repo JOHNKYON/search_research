@@ -31,7 +31,7 @@ if __name__ == '__main__':
     df = pd.DataFrame(dic)
     print(df.shape)
 
-    recording_path = "recording/experiments_m64_len"
+    recording_path = "recording/experiments_m64_len500000"
     # if len(args) == 1:
     #     recording_path +=  "_m_" + args[0]
     recording_path += ".csv"

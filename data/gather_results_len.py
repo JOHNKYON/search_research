@@ -20,7 +20,7 @@ if __name__ == '__main__':
 
     length = 128
     while length <= 448:
-        size = 1000000
+        size = 500000
         dic[length] = []
 
         with h5py.File(mih_path + "mih_" + str(length) + "_" + str(size) + "_100_p" +str(p) + "_m" + str(m) + ".h5", 'r') as mih_file:

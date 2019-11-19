@@ -23,13 +23,13 @@ if __name__ == '__main__':
             with h5py.File(
                     mih_path + "mih_" + str(length) + "_" + str(size) + "_100" + "_m" + str(m+16) + ".h5",
                     'r') as mih_file:
-                dic[m+16].append(mih_file['mih'][0][7] + mih_file['mih'][0][8])
+                dic[m+16].append(mih_file['mih'][0][9] + mih_file['mih'][0][10])
             size += 50000
 
     df = pd.DataFrame(dic)
     print(df.shape)
 
-    recording_path = "recording/experiments_m_size_p0.05"
+    recording_path = "recording/experiments_m_size_p0.05_memory"
     # if len(args) == 1:
     #     recording_path +=  "_m_" + args[0]
     recording_path += ".csv"

@@ -1,8 +1,6 @@
 import h5py
 import pandas as pd
 
-import sys
-
 if __name__ == '__main__':
     """
     Gather the results from the given path

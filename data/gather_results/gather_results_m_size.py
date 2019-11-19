@@ -17,11 +17,11 @@ if __name__ == '__main__':
     # linear_path = "scrpts/data/data/128_1000000_100/"
 
     for m in range(48):
-        dic[m] = []
+        dic[m+16] = []
         size = 50000
         while size <= 1000000:
             with h5py.File(
-                    mih_path + "mih_" + str(length) + "_" + str(size) + "_100" + "_m" + str(m) + ".h5",
+                    mih_path + "mih_" + str(length) + "_" + str(size) + "_100" + "_m" + str(m+16) + ".h5",
                     'r') as mih_file:
                 dic[length].append(mih_file['mih'][0][7] + mih_file['mih'][0][8])
             size += 50000

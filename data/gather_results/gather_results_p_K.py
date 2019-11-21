@@ -17,7 +17,7 @@ if __name__ == '__main__':
     mih_path = "recording/experiments_p_K/"
     # linear_path = "scrpts/data/data/128_1000000_100/"
 
-    for _k in range(10000):
+    for _k in range(1000):
         k = _k * 100 + 100
         dic[k] = []
         for p in p_list:

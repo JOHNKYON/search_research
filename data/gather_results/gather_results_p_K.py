@@ -23,7 +23,7 @@ if __name__ == '__main__':
         for p in p_list:
             with h5py.File(
                     mih_path + "mih_" + str(length) + "_" + str(N) + "_100" + "_m" \
-                    + str(m) + "_K" + str(k) + ".h5",
+                    + str(m) + "_K" + str(k) + "_" + p + ".h5",
                     'r') as mih_file:
                 dic[k].append(mih_file['mih'][0][7] + mih_file['mih'][0][8])
 

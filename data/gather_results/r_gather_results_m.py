@@ -27,7 +27,7 @@ if __name__ == '__main__':
         size = 1000000
         dic_time[m] = []
 
-        with h5py.File(mih_path + "mih_128_" + str(size) + "_100_m" + str(m) + ".h5", 'r') as mih_file:
+        with h5py.File(mih_path + "mih_128_" + str(size) + "_100_m" + str(m) + "D8.h5", 'r') as mih_file:
             dic_time[m].append(mih_file['mih'][0][7])
             dic_time[m].append(mih_file['mih'][0][7] + mih_file['mih'][0][8])
 
@@ -38,7 +38,7 @@ if __name__ == '__main__':
 
     df_mem = pd.DataFrame(dic_memory)
 
-    recording_path = "recording/experiments"
+    recording_path = "recording/experiments_m_p0.05_D8_"
     if len(args) == 1:
         recording_path += "_m_" + args[0]
     recording_path_time = recording_path + "time.csv"

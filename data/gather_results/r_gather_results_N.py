@@ -37,7 +37,7 @@ if __name__ == '__main__':
     print(df_time.shape)
 
 
-    recording_path = "recording/k_experiments_N_p0.05"
+    recording_path = "recording/r_experiments_N_p0.05"
     if len(args) == 1:
         recording_path += "_m_" + args[0]
     recording_path_time = recording_path + "time.csv"

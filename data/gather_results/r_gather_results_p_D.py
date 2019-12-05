@@ -9,7 +9,7 @@ if __name__ == '__main__':
     The results will be stored in txt files and .h5 files.
     """
     dic = {}
-    p_list = ["uniform", "p0.1", "p0.05"]
+    p_list = ["uniform", "p0.1", "p0.05", "p0.01"]
     length = 128
     N = 1000000
     m = 32

@@ -28,7 +28,7 @@ if __name__ == '__main__':
         size = (_size+1) * 10000
         dic_time[m] = []
 
-        with h5py.File(mih_path + "mih_" + str(l) + "_" + str(size) + "_100_m" + str(m) + "D8.h5", 'r') as mih_file:
+        with h5py.File(mih_path + "mih_" + str(l) + "_" + str(size) + "_100_m" + str(m) + "_D8.h5", 'r') as mih_file:
             dic_time[m].append(mih_file['mih'][0][7])
             dic_time[m].append(mih_file['mih'][0][7] + mih_file['mih'][0][8])
 

@@ -15,7 +15,7 @@ if __name__ == '__main__':
 
     args = sys.argv[1:]
 
-    mih_path = "recording/r_m_p0.05/"
+    mih_path = "recording/experiments_len2m/"
     # linear_path = "scrpts/data/data/128_1000000_100/"
 
     if len(args) == 1:

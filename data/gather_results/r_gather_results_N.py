@@ -26,11 +26,11 @@ if __name__ == '__main__':
 
     for _size in range(100):
         size = (_size+1) * 10000
-        dic_time[m] = []
+        dic_time[size] = []
 
         with h5py.File(mih_path + "mih_" + str(l) + "_" + str(size) + "_100_m" + str(m) + "_D8.h5", 'r') as mih_file:
-            dic_time[m].append(mih_file['mih'][0][7])
-            dic_time[m].append(mih_file['mih'][0][7] + mih_file['mih'][0][8])
+            dic_time[size].append(mih_file['mih'][0][7])
+            dic_time[size].append(mih_file['mih'][0][7] + mih_file['mih'][0][8])
 
 
     df_time = pd.DataFrame(dic_time)

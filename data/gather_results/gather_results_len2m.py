@@ -23,12 +23,14 @@ if __name__ == '__main__':
         mih_path = mih_path[:-1] + "_" + args[0] + "/"
         # linear_path = linear_path[:-1] + "_" + args[0] + "/"
 
-    for m in range(16, 65):
-        size = 1000000
+    for _l in range(16):
+        l = (_l+1) * 64
+        m = l / 2
+        size = 500000
         dic_time[m] = []
         dic_memory[m] = []
 
-        with h5py.File(mih_path + "mih_128_" + str(size) + "_100_m" + str(m) + "_D8.h5", 'r') as mih_file:
+        with h5py.File(mih_path + "mih_" + str(l) + "_" + str(size) + "_100_p0.1_m" + str(m) + ".h5", 'r') as mih_file:
             dic_time[m].append(mih_file['mih'][0][7])
             dic_time[m].append(mih_file['mih'][0][7] + mih_file['mih'][0][8])
 
@@ -39,7 +41,7 @@ if __name__ == '__main__':
 
     df_mem = pd.DataFrame(dic_memory)
 
-    recording_path = "recording/r_experiments_m_p0.05_D8_"
+    recording_path = "recording/k_experiments_len2m_p0.1"
     if len(args) == 1:
         recording_path += "_m_" + args[0]
     recording_path_time = recording_path + "time.csv"

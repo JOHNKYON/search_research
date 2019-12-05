@@ -25,7 +25,7 @@ if __name__ == '__main__':
 
     for _l in range(16):
         l = (_l+1) * 64
-        m = l / 2
+        m = int(l / 2)
         size = 500000
         dic_time[m] = []
         dic_memory[m] = []

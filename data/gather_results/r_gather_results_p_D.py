@@ -14,7 +14,7 @@ if __name__ == '__main__':
     N = 1000000
     m = 32
 
-    mih_path = "recording/experiments_p_K/"
+    mih_path = "recording/r_p_D/"
     # linear_path = "scrpts/data/data/128_1000000_100/"
 
     for D in range(1,17):

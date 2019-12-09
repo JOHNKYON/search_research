@@ -3,7 +3,6 @@ import math
 def find_encoding(matrix):
     length = int(math.log2(len(matrix)))
     ceil = 128
-    # TODO: Implement brute force find the satisfying encoding
     while length < 128:
         print(length)
         bits_array = build_bits_array(length)
@@ -15,20 +14,19 @@ def find_encoding(matrix):
                     for col2 in range(col1+1, l):
                         score_row = score_matrix[row0]
                         if score_row[col0] == score_row[col1] and score_row[col0] == score_row[col2]:
-                            # Look for the second valid row
                             pivot_zero = score_row[col0]
-                            for row1 in range(row0+1, l-1):
+                            # Look for the second valid row
+                            for row1 in range(l):
                                 score_row = score_matrix[row1]
                                 if score_row[col0] == pivot_zero:
-                                    diff = score_row[col1] - score_row[col0]
-                                    if diff == score_row[col2] - score_row[col1] and diff != 0:
+                                    diff = score_row[col2] - score_row[col0]
+                                    if diff != 0:
                                         # Look for the third valid row
-                                        for row2 in range(row1+1, l):
+                                        for row2 in range(l):
                                             score_row = score_matrix[row2]
                                             if score_row[col0] == pivot_zero and \
-                                                    score_row[col1] == pivot_zero + diff * 2 \
-                                                and score_row[col2] == pivot_zero + diff * 4:
-                                                return [[bits_array[col0], bits_array[col1], bits_array[col2]],
+                                                    score_row[col2] == pivot_zero + 4 * diff:
+                                                        return [[bits_array[col0], bits_array[col1], bits_array[col2]],
                                                         [bits_array[row0], bits_array[row1], bits_array[row2]]]
         length += 1
 
@@ -83,6 +81,6 @@ if __name__ == '__main__':
     #           [1,1,1],
     #           [0,1,2]]
     matrix = [[0,0,0],
-              [0,1,2],
-              [0,2,4]]
+              [0,1,-1],
+              [0,-1,4]]
     print(find_encoding(matrix))

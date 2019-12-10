@@ -39,6 +39,7 @@ def raw_to_binary(path, encoder):
             h5_file.create_dataset("Q", shape=(query_size, length/2), dtype='uint8')
             for i in range(size):
                 h5_file["B"][i] = encoder.encode("base", file.readline()[:-1])
+                print(i)
             for i in range(query_size):
                 h5_file["Q"][i] = encoder.encode("query", file.readline()[:-1])
 

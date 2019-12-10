@@ -30,6 +30,8 @@ def raw_to_binary(path, encoder):
         length = int(file.readline())
         size = int(file.readline())
         query_size = int(file.readline())
+
+        print("length = " + str(length) + "\t size = " + str(size) + "\t query_size = " + str(query_size))
         with h5py.File(path + "/" + str(length) + "_" + str(size) +
                        "_" + str(query_size) +
                        ".mat", 'w') as h5_file:

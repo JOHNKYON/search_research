@@ -59,4 +59,4 @@ if __name__ == '__main__':
     matrix = [[0,0,0],
               [0,1,2],
               [0,2,4]]
-    print_encoding(2)
+    print_encoding(4)

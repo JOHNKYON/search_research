@@ -50,15 +50,25 @@ class Encoder:
     encoding function
     """
 
-    def __init__(self, base_map=None, query_map=None):
-        if base_map is None:
-            base_map = {"0": 0,
-                        "1": 3,
-                        "2": 15}
-        if query_map is None:
-            query_map = {"0": 0,
-                         "1": 5,
-                         "2": 15}
+    def __init__(self, base_map=None, query_map=None, heuristic = False):
+        if heuristic:
+            if base_map is None:
+                base_map = {"0": 0,
+                            "1": 1,
+                            "2": 7}
+            if query_map is None:
+                query_map = {"0": 10,
+                             "1": 11,
+                             "2": 7}
+        else:
+            if base_map is None:
+                base_map = {"0": 0,
+                            "1": 3,
+                            "2": 15}
+            if query_map is None:
+                query_map = {"0": 0,
+                             "1": 5,
+                             "2": 15}
 
         self.map = {"base": base_map,
                "query": query_map}
@@ -81,7 +91,12 @@ class Encoder:
 
 if __name__ == '__main__':
     argv = sys.argv[1:]
-    assert len(argv) == 1
+    assert len(argv) == 1 or len(argv) == 2
 
-    encoder = Encoder()
+    heuristic = False
+    if len(argv) == 2:
+        if argv[1] == "True":
+            heuristic = True
+
+    encoder = Encoder(heuristic=heuristic)
     raw_to_binary(argv[0], encoder)

@@ -92,21 +92,25 @@ def build_string(length):
     return s
 
 
-def read_frequencies():
+def read_frequencies(length):
+    # TODO: Implement
     jsnp_allele_freq = pd.read_csv("data/jsnp_allele_freq.csv")
     jsnp_allele_freq = jsnp_allele_freq[['allele-2 frequency']]
+
+    if length != -1:
+        return jsnp_allele_freq[:length]
 
     return jsnp_allele_freq
 
 if __name__ == "__main__":
     argv = sys.argv[1:]
 
-    assert len(argv) == 2
+    assert len(argv) == 2 or len(argv) == 3
 
-    if len(argv)  == 3:
-        raw_data_generation(int(argv[0]), int(argv[1]), int(argv[2]))
-    else:
-        ps = read_frequencies()
-        raw_data_generation_r(int(argv[0]), int(argv[1]), ps)
+    length = -1
+    if len(argv) == 3:
+        length = int(argv[2])
+    ps = read_frequencies(length)
+    raw_data_generation_r(int(argv[0]), int(argv[1]), ps)
 
 

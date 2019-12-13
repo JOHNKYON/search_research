@@ -52,14 +52,7 @@ class Encoder:
 
     def __init__(self, base_map=None, query_map=None, heuristic = False):
         if heuristic:
-            if base_map is None:
-                base_map = {"0": 0,
-                            "1": 1,
-                            "2": 7}
-            if query_map is None:
-                query_map = {"0": 10,
-                             "1": 11,
-                             "2": 7}
+            pass
         else:
             if base_map is None:
                 base_map = {"0": 0,
@@ -91,12 +84,7 @@ class Encoder:
 
 if __name__ == '__main__':
     argv = sys.argv[1:]
-    assert len(argv) == 1 or len(argv) == 2
+    assert len(argv) == 1 or len(argv)
 
-    heuristic = False
-    if len(argv) == 2:
-        if argv[1] == "True":
-            heuristic = True
-
-    encoder = Encoder(heuristic=heuristic)
+    encoder = Encoder()
     raw_to_binary(argv[0], encoder)

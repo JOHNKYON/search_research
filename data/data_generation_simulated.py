@@ -93,7 +93,6 @@ def build_string(length):
 
 
 def read_frequencies(length):
-    # TODO: Implement
     jsnp_allele_freq = pd.read_csv("data/jsnp_allele_freq.csv")
     jsnp_allele_freq = jsnp_allele_freq[['allele-2 frequency']]
 

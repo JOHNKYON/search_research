@@ -2,6 +2,7 @@ import math
 import numpy as np
 import pandas as pd
 import os
+import sys
 
 def cal_arrange(entropies, m):
     """
@@ -94,7 +95,7 @@ def arrange(indices, s):
     return res + "\n"
 
 
-def get_ps():
+def get_ps(length):
     """
     Get probabilities from a fixed given file.
 
@@ -103,20 +104,28 @@ def get_ps():
     jsnp_allele_freq = pd.read_csv("data/jsnp_allele_freq.csv")
     jsnp_allele_freq = jsnp_allele_freq[['allele-2 frequency']]
 
-    return jsnp_allele_freq.to_numpy()
+
+
+    return jsnp_allele_freq[:length].to_numpy()
 
 
 if __name__ == '__main__':
+    argv = sys.argv[1:]
+    length = 84716
+
+    if len(argv) == 1:
+        length = int(argv[0])
+
     l = 4
-    m = 84716 / l
-    path = "data/84716_100000_1000_simulated/"
+    m = length / l
+    path = "data/" + argv[0] + "_100000_1000_simulated/"
     # path = "data/84716_10_5_simulated/"
     raw_path = path + "raw.txt"
-    target_path = "data/84716_100000_1000_simulated_arranged"
+    target_path = "data/" + argv[0] + "_100000_1000_simulated_arranged"
 
     os.mkdir(target_path)
 
-    probs = get_ps()
+    probs = get_ps(length)
     entropies = cal_entropies(probs)
 
     indices = cal_arrange(entropies, m)

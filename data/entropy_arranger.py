@@ -22,7 +22,7 @@ def cal_arrange(entropies, m):
     idxes = reversed(np.argsort(entropies).tolist())
     sets = []
     sums = []
-    for _ in range(m):
+    for _ in range(int(m)):
         sets.append([])
         sums.append(0)
 
@@ -86,12 +86,12 @@ def arrange(indices, s):
     :param s:
     :return:
     """
-    length = len(s)
+    length = len(indices)
     assert len(indices) == len(s)
     res = ""
     for i in range(length):
         res += s[indices[i]]
-    return res
+    return res + "\n"
 
 
 def get_ps():
@@ -107,14 +107,14 @@ def get_ps():
 
 
 if __name__ == '__main__':
-    m = 32
+    l = 4
+    m = 84716 / l
     path = "data/84716_100000_1000_simulated/"
     # path = "data/84716_10_5_simulated/"
     raw_path = path + "raw.txt"
     target_path = "data/84716_100000_1000_simulated_arranged"
 
     os.mkdir(target_path)
-
 
     probs = get_ps()
     entropies = cal_entropies(probs)
@@ -126,11 +126,10 @@ if __name__ == '__main__':
         for line in raw_file:
             if count < 3:
                 # Write length, data size, query_size
-                target_file.write(raw_file.readline())
-                target_file.write(raw_file.readline())
-                target_file.write(raw_file.readline())
+                target_file.write(line)
+                count += 1
             else:
-                target_file.write(arrange(indices, raw_file.readline()))
+                target_file.write(arrange(indices, line[:-1]))
 
 
 

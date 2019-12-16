@@ -20,7 +20,7 @@ if __name__ == '__main__':
     while K <= 100000:
         size = 100000
         dic[K] = []
-        dic_arr = {}
+        dic_arr[K] = []
 
         with h5py.File(mih_path + "mih_" + str(length) + "_" + str(size) + "_1000" + "_m" + str(m) \
                        + "_K" + str(K) + "_simulated.h5", 'r') as mih_file:

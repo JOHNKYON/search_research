@@ -39,7 +39,7 @@ def raw_to_binary(path, encoder):
             h5_file.create_dataset("Q", shape=(query_size, length/2), dtype='uint8')
             for i in range(size):
                 h5_file["B"][i] = encoder.encode("base", file.readline()[:-1])
-                print(i)
+                # print(i)
             for i in range(query_size):
                 h5_file["Q"][i] = encoder.encode("query", file.readline()[:-1])
 
@@ -52,7 +52,14 @@ class Encoder:
 
     def __init__(self, base_map=None, query_map=None, heuristic = False):
         if heuristic:
-            pass
+            if base_map is None:
+                base_map = {"0": 0,
+                            "1": 1,
+                            "2": 7}
+            if query_map is None:
+                query_map = {"0": 10,
+                             "1": 11,
+                             "2": 7}
         else:
             if base_map is None:
                 base_map = {"0": 0,
@@ -84,7 +91,13 @@ class Encoder:
 
 if __name__ == '__main__':
     argv = sys.argv[1:]
-    assert len(argv) == 1 or len(argv)
+    assert len(argv) == 1 or len(argv) == 2
 
-    encoder = Encoder()
+    heuristic = False
+
+    if len(argv == 2):
+        if argv[1] == "True":
+            heuristic = True
+
+    encoder = Encoder(heuristic=heuristic)
     raw_to_binary(argv[0], encoder)

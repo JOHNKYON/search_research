@@ -32,16 +32,29 @@ def raw_to_binary(path, encoder):
         query_size = int(file.readline())
 
         print("length = " + str(length) + "\t size = " + str(size) + "\t query_size = " + str(query_size))
-        with h5py.File(path + "/" + str(length) + "_" + str(size) +
-                       "_" + str(query_size) +
-                       ".mat", 'w') as h5_file:
-            h5_file.create_dataset("B", shape=(size, length/2), dtype='uint8')
-            h5_file.create_dataset("Q", shape=(query_size, length/2), dtype='uint8')
-            for i in range(size):
-                h5_file["B"][i] = encoder.encode("base", file.readline()[:-1])
-                # print(i)
-            for i in range(query_size):
-                h5_file["Q"][i] = encoder.encode("query", file.readline()[:-1])
+        if encoder.heuristic:
+            with h5py.File(path + "/" + str(length) + "_" + str(size) +
+                           "_" + str(query_size) +
+                           "heuristic3.mat", 'w') as h5_file:
+                h5_file.create_dataset("B", shape=(size, length / 2), dtype='uint8')
+                h5_file.create_dataset("Q", shape=(query_size, length / 2), dtype='uint8')
+                for i in range(size):
+                    h5_file["B"][i] = encoder.encode("base", file.readline()[:-1])
+                    # print(i)
+                for i in range(query_size):
+                    h5_file["Q"][i] = encoder.encode("query", file.readline()[:-1])
+
+        else:
+            with h5py.File(path + "/" + str(length) + "_" + str(size) +
+                           "_" + str(query_size) +
+                           ".mat", 'w') as h5_file:
+                h5_file.create_dataset("B", shape=(size, length/2), dtype='uint8')
+                h5_file.create_dataset("Q", shape=(query_size, length/2), dtype='uint8')
+                for i in range(size):
+                    h5_file["B"][i] = encoder.encode("base", file.readline()[:-1])
+                    # print(i)
+                for i in range(query_size):
+                    h5_file["Q"][i] = encoder.encode("query", file.readline()[:-1])
 
 
 class Encoder:
@@ -51,6 +64,7 @@ class Encoder:
     """
 
     def __init__(self, base_map=None, query_map=None, heuristic = False):
+        self.heuristic = heuristic
         if heuristic:
             if base_map is None:
                 base_map = {"0": 0,

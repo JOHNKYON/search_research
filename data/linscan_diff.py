@@ -116,10 +116,15 @@ if __name__ == '__main__':
 
     # Search and store results
     with open(path + "/linscan.csv", 'w') as output:
-        for query in tqdm(queries):
-            res = linear_scan(path, query, k)
-            for idx in res:
-                output.write(str(idx) + ',')
-            output.write('\n')
+        try:
+            with tqdm(queries) as query:
+                res = linear_scan(path, query, k)
+                for idx in res:
+                    output.write(str(idx) + ',')
+                output.write('\n')
+        except KeyboardInterrupt:
+            query.close()
+            raise
+        query.close()
 
 

@@ -33,10 +33,11 @@ def linear_scan(path, query, k):
                 heapq.heappush(candidates, [relatedness, i])
 
     idx = []
-    for candidate in candidates:
-        idx.append(candidate[1]+1)
+    while len(candidates) != 0:
+        idx.append(heapq.heappop(candidates)[1] + 1)
 
     print("Done.")
+    idx.reverse()
     return idx
 
 
@@ -56,7 +57,7 @@ def get_relatedness(a, b):
 
     score = 0
     for i in range(len(a)):
-        if a[i] == '0' or b[i] == '9':
+        if a[i] == '0' or b[i] == '0':
             continue
         elif a[i] == '1' and b[i] == '1':
             score += 1
@@ -121,6 +122,5 @@ if __name__ == '__main__':
             for idx in res:
                 output.write(str(idx) + ',')
             output.write('\n')
-
 
 

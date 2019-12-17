@@ -21,8 +21,6 @@ def linear_scan(path, query, k):
         length = int(file.readline())
         data_size = int(file.readline())
         query_size = int(file.readline())
-        print("Querying...")
-        print("Data size:\t" + str(data_size))
         for i in range(data_size):
             string = file.readline().rstrip()
             relatedness = get_relatedness(query, string)

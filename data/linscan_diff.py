@@ -34,7 +34,7 @@ def linear_scan(path, query, k):
 
     idx = []
     for candidate in candidates:
-        idx.append(candidate[1])
+        idx.append(candidate[1]+1)
 
     print("Done.")
     return idx
@@ -121,5 +121,6 @@ if __name__ == '__main__':
             for idx in res:
                 output.write(str(idx) + ',')
             output.write('\n')
+
 
 

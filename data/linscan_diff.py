@@ -1,6 +1,7 @@
 import heapq
 import sys
-import time
+
+from tqdm import tqdm
 
 
 def linear_scan(path, query, k):
@@ -21,7 +22,7 @@ def linear_scan(path, query, k):
         data_size = int(file.readline())
         query_size = int(file.readline())
         print("Querying...")
-        print("Query size:\t" + str(query_size))
+        print("Data size:\t" + str(data_size))
         for i in range(data_size):
             string = file.readline().rstrip()
             relatedness = get_relatedness(query, string)
@@ -117,7 +118,7 @@ if __name__ == '__main__':
 
     # Search and store results
     with open(path + "/linscan.csv", 'w') as output:
-        for query in queries:
+        for query in tqdm(queries):
             res = linear_scan(path, query, k)
             for idx in res:
                 output.write(str(idx) + ',')

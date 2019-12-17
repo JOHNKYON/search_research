@@ -1,5 +1,4 @@
 import heapq
-import h5py
 import sys
 import time
 
@@ -9,8 +8,6 @@ def linear_scan(path, query, k):
     This function do linear scan kNN search on the raw data in the
     given path, a given query and a given k.
 
-    >>> linear_scan("data/data/4_6_2", "0000", 2)
-    [0,1]
 
     :param path:
     :param query:
@@ -46,10 +43,10 @@ def linear_scan(path, query, k):
 def get_relatedness(a, b):
     """
     >>> get_relatedness("0012", "0111")
-    1
+    3
 
     >>> get_relatedness("0022", "0022")
-    4
+    8
 
     :param a:
     :param b:
@@ -59,12 +56,14 @@ def get_relatedness(a, b):
 
     score = 0
     for i in range(len(a)):
-        if a[i] == '1' or b[i] == '1':
+        if a[i] == '0' or b[i] == '9':
             continue
-        elif a[i] == b[i]:
+        elif a[i] == '1' and b[i] == '1':
             score += 1
+        elif a[i] == '1' or b[i] == '1':
+            score += 2
         else:
-            score -= 1
+            score += 4
     return score
 
 
@@ -114,18 +113,13 @@ if __name__ == '__main__':
 
     # Linear Scan
     queries = load_query(path)
-    linscan_results = []
-    time1 = time.perf_counter()
-    for query in queries:
-        linscan_results.append(linear_scan(path, query, k))
-    query_time = time.perf_counter() - time1
-    with open(path+"/linear_query_time.txt", 'w') as f:
-        f.write(str(query_time))
 
-    # Validation
-    file_name = path.split('/')[-1]
+    # Search and store results
+    with open(path + "/linscan.csv", 'w') as output:
+        for query in queries:
+            res = linear_scan(path, query, k)
+            for idx in res:
+                output.write(str(idx) + ',')
+            output.write('\n')
 
-    # TODO: Change this to mih
-    # TODO: Check for validation
-    with h5py.File(path + '/linscan_' + file_name + '.h5', 'r') as h5_file:
-        print(compare_results(h5_file['refs']['linscan0.res'], linscan_results))
+

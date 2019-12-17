@@ -35,7 +35,7 @@ def linear_scan(path, query, k):
     while len(candidates) != 0:
         idx.append(heapq.heappop(candidates)[1] + 1)
 
-    print("Done.")
+    # print("Done.")
     idx.reverse()
     return idx
 
@@ -117,14 +117,15 @@ if __name__ == '__main__':
     # Search and store results
     with open(path + "/linscan.csv", 'w') as output:
         try:
-            with tqdm(queries) as query:
-                res = linear_scan(path, query, k)
-                for idx in res:
-                    output.write(str(idx) + ',')
-                output.write('\n')
+            with tqdm(queries) as t:
+                for query in t:
+                    res = linear_scan(path, query, k)
+                    for idx in res:
+                        output.write(str(idx) + ',')
+                    output.write('\n')
         except KeyboardInterrupt:
-            query.close()
+            t.close()
             raise
-        query.close()
+        t.close()
 
 

@@ -14,7 +14,7 @@ def compare_results(csv_path, h5_path):
     :return:
     """
     df = pd.read_csv(csv_path, header=None)
-    acc_res = df.drop(df.columns[[-1, ]], axis=1).to_numpy()
+    acc_res = df.drop(df.columns[[-1, -2]], axis=1).to_numpy()
     heur_res = get_heuristic_res(h5_path)
 
     print(acc_res.shape)

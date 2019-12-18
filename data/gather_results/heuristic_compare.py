@@ -40,7 +40,7 @@ def get_heuristic_res(h5_path):
     :return:
     """
     with h5py.File(h5_path, 'r') as file:
-        return file_path[file['refs']]['mih0.res'].value
+        return file['refs']['mih0.res'].value
 
 
 

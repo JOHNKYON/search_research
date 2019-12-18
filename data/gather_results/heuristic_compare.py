@@ -40,7 +40,7 @@ def get_heuristic_res(h5_path):
     :return:
     """
     with h5py.File(h5_path, 'r') as file:
-        return file_path[file['refs']['mih0.res']].value
+        return file_path[file['refs']]['mih0.res'].value
 
 
 
@@ -52,5 +52,6 @@ if __name__ == '__main__':
 
     result = compare_results(file_path[0], file_path[1])
 
-    pd.DataFrame(result).to_csv(out_path)
+    res = pd.DataFrame(result)
+    res.to_csv(out_path)
 

@@ -16,6 +16,9 @@ def compare_results(csv_path, h5_path):
     acc_res = pd.read_csv(csv_path).to_numpy()
     heur_res = get_heuristic_res(h5_path)
 
+    print(acc_res.shape)
+    print(heur_res.shape)
+
     assert acc_res.shape == heur_res.shape
 
     k = 10

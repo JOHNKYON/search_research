@@ -22,10 +22,12 @@ def compare_results(csv_path, h5_path):
 
     assert acc_res.shape == heur_res.shape
 
-    k = 10
+    k = 1
     res = {}
     q_count = acc_res.shape[0]
     while k <= 100000:
+        if k == 100000:
+            k = 99999
         res[k] = 0.0
         for idx in range(q_count):
             res[k] += np.intersect1d(acc_res[idx], heur_res[idx]).shape[0] / k
@@ -57,6 +59,6 @@ if __name__ == '__main__':
     result = compare_results(file_path[0], file_path[1])
     print(result)
 
-    res = pd.DataFrame.from_dict(result)
+    res = pd.DataFrame(result, index=[0])
     res.to_csv(out_path)
 

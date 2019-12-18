@@ -55,6 +55,7 @@ if __name__ == '__main__':
     print(out_path)
 
     result = compare_results(file_path[0], file_path[1])
+    print(result)
 
     res = pd.DataFrame(result)
     res.to_csv(out_path)

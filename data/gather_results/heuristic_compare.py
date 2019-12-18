@@ -31,7 +31,7 @@ def compare_results(csv_path, h5_path):
         res[k] = 0.0
         for idx in range(q_count):
             res[k] += np.intersect1d(acc_res[idx], heur_res[idx]).shape[0] / k
-        k *= 10
+        k += 1000
 
     return res
 

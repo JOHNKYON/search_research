@@ -48,6 +48,7 @@ if __name__ == '__main__':
     argv = sys.argv[1:]
     file_path = argv[:2]
     out_path = argv[2]
+    print(out_path)
 
     result = compare_results(file_path[0], file_path[1])
 

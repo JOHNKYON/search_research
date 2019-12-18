@@ -13,7 +13,8 @@ def compare_results(csv_path, h5_path):
     :param h5_file:
     :return:
     """
-    acc_res = pd.read_csv(csv_path).to_numpy()
+    df = pd.read_csv(csv_path, header=None)
+    acc_res = df.drop(df.columns[[-1, ]], axis=1).to_numpy()
     heur_res = get_heuristic_res(h5_path)
 
     print(acc_res.shape)

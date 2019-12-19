@@ -25,7 +25,7 @@ def compare_results(csv_path, h5_path):
     k = 1
     res = {}
     q_count = acc_res.shape[0]
-    while k <= 2:
+    while k <= 100000:
         if k == 100000:
             k = 99999
         res[k] = 0.0
@@ -33,7 +33,7 @@ def compare_results(csv_path, h5_path):
             res[k] += np.intersect1d(acc_res[idx][:k], heur_res[idx][:k]).shape[0] / k
 
         res[k] /= q_count
-        k += 1
+        k += 1000
 
     return res
 

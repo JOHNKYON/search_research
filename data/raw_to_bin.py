@@ -63,9 +63,9 @@ class Encoder:
     encoding function
     """
 
-    def __init__(self, base_map=None, query_map=None, heuristic = False):
+    def __init__(self, base_map=None, query_map=None, heuristic = None):
         self.heuristic = heuristic
-        if heuristic:
+        if heuristic == 3:
             if base_map is None:
                 base_map = {"0": 0,
                             "1": 1,
@@ -74,6 +74,51 @@ class Encoder:
                 query_map = {"0": 10,
                              "1": 11,
                              "2": 7}
+        elif heuristic == 5:
+            if base_map is None:
+                base_map = {"0": 0,
+                            "1": 0,
+                            "2": 3}
+            if query_map is None:
+                query_map = {"0": 5,
+                             "1": 1,
+                             "2": 3}
+        elif heuristic == 7:
+            if base_map is None:
+                base_map = {"0": 0,
+                            "1": 0,
+                            "2": 7}
+            if query_map is None:
+                query_map = {"0": 9,
+                             "1": 3,
+                             "2": 7}
+        elif heuristic == 9:
+            if base_map is None:
+                base_map = {"0": 0,
+                            "1": 0,
+                            "2": 1}
+            if query_map is None:
+                query_map = {"0": 1,
+                             "1": 1,
+                             "2": 1}
+        elif heuristic == 11:
+            if base_map is None:
+                base_map = {"0": 0,
+                            "1": 0,
+                            "2": 3}
+            if query_map is None:
+                query_map = {"0": 1,
+                             "1": 1,
+                             "2": 3}
+        elif heuristic == 13:
+            if base_map is None:
+                base_map = {"0": 0,
+                            "1": 0,
+                            "2": 1}
+            if query_map is None:
+                query_map = {"0": 0,
+                             "1": 1,
+                             "2": 1}
         else:
             if base_map is None:
                 base_map = {"0": 0,
@@ -107,11 +152,10 @@ if __name__ == '__main__':
     argv = sys.argv[1:]
     assert len(argv) == 1 or len(argv) == 2
 
-    heuristic = False
+    heuristic = None
 
     if len(argv) == 2:
-        if argv[1] == "True":
-            heuristic = True
+        heuristic = int(argv[1])
 
     encoder = Encoder(heuristic=heuristic)
     raw_to_binary(argv[0], encoder)

@@ -22,7 +22,7 @@ if __name__ == '__main__':
         dic[N] = []
         with h5py.File(
                 mih_path + "mih_" + str(length) + "_" + str(N) + "_1000" + "_m" \
-                + str(m) + "_K" + str(K) + ".h5",
+                + str(m) + ".h5",
                 'r') as mih_file:
             dic[N].append(mih_file['mih'][0][7] + mih_file['mih'][0][8])
 

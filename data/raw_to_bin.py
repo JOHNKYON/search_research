@@ -32,10 +32,10 @@ def raw_to_binary(path, encoder):
         query_size = int(file.readline())
 
         print("length = " + str(length) + "\t size = " + str(size) + "\t query_size = " + str(query_size))
-        if encoder.heuristic:
+        if encoder.heuristic is not None:
             with h5py.File(path + "/" + str(length) + "_" + str(size) +
                            "_" + str(query_size) +
-                           "heuristic3.mat", 'w') as h5_file:
+                           "heuristic" + str(encoder.heuristic) +".mat", 'w') as h5_file:
                 h5_file.create_dataset("B", shape=(size, length / 2), dtype='uint8')
                 h5_file.create_dataset("Q", shape=(query_size, length / 2), dtype='uint8')
                 for i in range(size):

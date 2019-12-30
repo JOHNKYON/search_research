@@ -40,6 +40,8 @@ if __name__ == '__main__':
     N = 1000000
     m = 32
 
+    mih_path = "recording/simulated_K/"
+
     for _K in range(1000):
         K = (_K + 1) * 100
         dic[K] = []
@@ -62,6 +64,8 @@ if __name__ == '__main__':
     length = 128
     N = 1000000
     m = 32
+
+    mih_path = "recording/simulated_D/"
 
     for _D in range(16):
         D = _D + 1

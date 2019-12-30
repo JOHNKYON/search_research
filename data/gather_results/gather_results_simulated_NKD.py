@@ -67,7 +67,7 @@ if __name__ == '__main__':
         D = _D + 1
         dic[D] = []
         with h5py.File(
-                mih_path + "mih_" + str(length) + "_" + str(N) + "_100" + "_m" \
+                mih_path + "mih_" + str(length) + "_" + str(N) + "_1000" + "_m" \
                 + str(m) + "_D" + str(D) + "_.h5",
                 'r') as mih_file:
             dic[D].append(mih_file['mih'][0][7] + mih_file['mih'][0][8])

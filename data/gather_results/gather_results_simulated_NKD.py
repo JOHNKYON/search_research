@@ -17,8 +17,8 @@ if __name__ == '__main__':
     mih_path = "recording/simulated_N/"
     # linear_path = "scrpts/data/data/128_1000000_100/"
 
-    for _N in range(100):
-        N = (_N + 1) * 10000
+    for _N in range(200):
+        N = (_N + 1) * 5000
         dic[N] = []
         with h5py.File(
                 mih_path + "mih_" + str(length) + "_" + str(N) + "_1000" + "_m" \

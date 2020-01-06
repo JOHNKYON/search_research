@@ -1,5 +1,4 @@
 import math
-import numpy as np
 import pandas as pd
 import os
 import sys
@@ -149,6 +148,7 @@ def get_ps(length):
 
 
 if __name__ == '__main__':
+    sys.setrecursionlimit(2500)
     argv = sys.argv[1:]
     length = 84716
 

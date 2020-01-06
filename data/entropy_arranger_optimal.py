@@ -156,7 +156,7 @@ if __name__ == '__main__':
         length = int(argv[0])
 
     l = 4
-    m = length / l
+    m = int(length / l)
     path = "data/" + argv[0] + "_100000_1000_simulated/"
     # path = "data/84716_10_5_simulated/"
     raw_path = path + "raw.txt"

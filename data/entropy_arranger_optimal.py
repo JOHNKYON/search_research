@@ -160,7 +160,7 @@ if __name__ == '__main__':
     path = "data/" + argv[0] + "_100000_1000_simulated/"
     # path = "data/84716_10_5_simulated/"
     raw_path = path + "raw.txt"
-    target_path = "data/" + argv[0] + "_100000_1000_simulated_arranged"
+    target_path = "data/" + argv[0] + "_100000_1000_simulated_arranged_optimal"
 
     os.mkdir(target_path)
 

@@ -44,7 +44,7 @@ def dp(sets, sums, s, sm, m, ptr, level, es, diff):
             diff[0] = temp
         return
 
-    if diff[0] == 0:
+    if diff[0] - 0 <= 1e-2 :
         return
 
     if ptr % m == 0:

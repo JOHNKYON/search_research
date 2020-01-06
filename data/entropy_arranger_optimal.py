@@ -44,6 +44,9 @@ def dp(sets, sums, s, sm, m, ptr, level, es, diff):
             diff[0] = temp
         return
 
+    if diff[0] == 0:
+        return
+
     if ptr % m == 0:
         level += 1
 

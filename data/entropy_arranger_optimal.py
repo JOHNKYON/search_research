@@ -170,7 +170,9 @@ if __name__ == '__main__':
     probs = get_ps(length)
     entropies = cal_entropies(probs)
 
+    print("Calculating indices")
     indices = cal_arrange(entropies, m)
+    print("Calculation Complete")
     count = 0
 
     with open(raw_path, 'r') as raw_file, open(target_path + "/raw.txt", 'w') as target_file:

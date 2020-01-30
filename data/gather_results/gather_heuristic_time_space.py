@@ -14,7 +14,7 @@ if __name__ == '__main__':
     size = 100000
     K = 2000
 
-    mih_path = "recording/heuristic_K"
+    mih_path = "recording/heuristic_K/"
     # linear_path = "scrpts/data/data/128_1000000_100/"
 
 

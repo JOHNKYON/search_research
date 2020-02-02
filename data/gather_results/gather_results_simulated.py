@@ -13,7 +13,7 @@ if __name__ == '__main__':
     N = 100000
     K = 1000
 
-    mih_path = "recording/simulated_N/"
+    mih_path = "recording/entropy_K/"
     # linear_path = "scrpts/data/data/128_1000000_100/"
 
     for _m in range(8):

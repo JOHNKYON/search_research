@@ -18,7 +18,7 @@ if __name__ == '__main__':
 
     for _m in range(8):
         m = (_m + 28) * 16
-        dic[N] = []
+        dic[m] = []
         with h5py.File(
                 mih_path + "mih_" + str(length) + "_" + str(N) + "_1000" + "_m" \
                 + str(m) + "_K100_simulated.h5",
